@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            background-color: blue;
+            display: grid;
+            place-items: center;
+        }
+
+        #div_1 {
+            border: 1px solid black;
+            height: 130px;
+            width: 750px;
+            border-radius: 10px;
+            margin-top: 100px;
+            background-color: black;
+        }
+
+        input {
+            height: 45px;
+            width: 200px;
+            margin-top: 45px;
+            margin-left: 110px;
+            border-radius: 10px;
+            font-size: 24px;
+
+        }
+
+        #button {
+            height: 47px;
+            width: 150px;
+            border-radius: 10px;
+            background-color: white;
+            margin-left: 106px;
+            font-size: 20px;
+        }
+
+        #div_2 {
+            /* border: 1px solid wheat; */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 800px;
+            margin-top: 200px;
+            height: 100px;
+        }
+
+        #years {
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid white; */
+            background-color: black;
+            color: white;
+        }
+
+        #year {
+            font-size: 55px;
+            margin-left: 18px;
+        }
+
+        #months {
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid white; */
+            background-color: black;
+            color: white;
+        }
+
+        #month {
+            font-size: 55px;
+            margin-left: 38px;
+        }
+
+        #day {
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid white; */
+            background-color: black;
+            color: white;
+        }
+
+        #days {
+            font-size: 55px;
+            margin-left: 34px;
+        }
+        .letter{
+            margin-left: 32px;
+            color: #a38585;
+            /* margin-top: 64px; */
+        }
+        #birthdate{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div_1">
+        <input type="date" id="birthdate">
+
+        <button onclick="calculateAge()" id="button">Calculate Age</button>
+    </div>
+    <div id="div_2">
+        <div id="years">
+            <div id="year"></div>
+            <div class="letter">Years</div>
+        </div>
+        <div id="months">
+            <div id="month"></div>
+            <div class="letter">Months</div>
+        </div>
+        <div id="day">
+            <div id="days"></div>
+            <div class="letter">Days</div>
+        </div>
+    </div>
+    <script>
+        function calculateAge() {
+            const birthdateInput = document.getElementById('birthdate');
+            const birthdate = new Date(birthdateInput.value);
+            const currentDate = new Date();
+
+            const ageInMilliseconds = currentDate - birthdate;
+            const ageInSeconds = ageInMilliseconds / 1000;
+            const ageInMinutes = ageInSeconds / 60;
+            const ageInHours = ageInMinutes / 60;
+            const ageInDays = ageInHours / 24;
+            const ageInMonths = ageInDays / 30.44; // Average number of days in a month
+            const ageInYears = ageInDays / 365.25; // Average number of days in a year
+
+            const yearres = `${Math.floor(ageInYears)}`;
+            const monthres = `${Math.floor(ageInMonths % 12)}`;
+            const daysres = `${Math.floor(ageInDays % 30.44)}`;
+
+            document.getElementById('year').innerText = yearres;
+            document.getElementById('month').innerText = monthres;
+            document.getElementById('days').innerText = daysres;
+        }
+    </script>
+
+</body>
+
+</html>

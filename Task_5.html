@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: rgb(44, 44, 185);
+            display: grid;
+            place-items: center;
+        }
+
+        .div_1 {
+            background-color: white;
+            height: 450px;
+            width: 750px;
+            border-radius: 10px;
+            margin-top: 100px
+        }
+
+        #result {
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 70px;
+            /* float: left; */
+            margin-right: 360px;
+        }
+
+        input {
+            height: 25px;
+            width: 220px;
+            margin-right: 30px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            height: 38px;
+            width: 95px;
+            border-radius: 10px;
+            border: 1px solid blue;
+            margin-left: 10px;
+        }
+
+        #output {
+            background-color: green;
+            color: white;
+            height: 30px;
+            width: 300px;
+            margin-left: 200px;
+            margin-top: 30px;
+            border-radius: 10px;
+            padding-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div_1">
+        <p id="result">Is It A Palindrome?</p>
+        <input type="text" id="inputText" placeholder="Enter a word">
+        <button onclick="checkPalindrome()">Check</button>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        function isPalindrome(str) {
+            const cleanStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            // Reverse the string
+            const reversedStr = cleanStr.split('').reverse().join('');
+            // Check if the original and reversed strings are the same
+            return cleanStr === reversedStr;
+        }
+
+        function checkPalindrome() {
+
+            const inputValue = document.getElementById('inputText').value;
+
+            const isPalin = isPalindrome(inputValue);
+
+            const outputElement = document.getElementById('output');
+            if (isPalin) {
+                outputElement.textContent = 'Yes, it is a palindrome!';
+            } else {
+                outputElement.textContent = 'No, it is not a palindrome.';
+            }
+        }
+    </script>
+</body>
+
+</html>
