@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: blue;
+        }
+
+        #div1 {
+            /* border: 1px solid black; */
+            width: 700px;
+            height: 500px;
+            background-color: white;
+        }
+
+        #h1 {
+            margin: 30px 10px 10px;
+            /* border: 1px solid black; */
+            height: 39px;
+            background-color: rgb(21, 17, 98);
+            color: white;
+            text-align: center;
+        }
+
+        #div2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            /* border: 1px solid black; */
+            height: 100px;
+            width: 250px;
+            margin-top: 100px;
+            margin-left: 240px;
+        }
+
+        .timer {
+            height: 41px;
+            width: 50px;
+            background-color: lightblue;
+            color: blue;
+            /* border: 1px solid black; */
+            text-align: center;
+            padding: 6px;
+            
+        }
+
+        .Sbuttons {
+            margin-left: 250px;
+            height: 35px;
+            width: 77px;
+            border-radius: 10px;
+            background-color: #0000ff63;
+            color: white;
+            cursor: pointer;
+
+        }
+        .STbuttons{
+            height: 35px;
+            width: 77px;
+            border-radius: 10px;
+            background-color: #b86c00f2;
+            color: white;
+            cursor: pointer;
+        }
+        .REbuttons{
+            height: 35px;
+            width: 77px;
+            border-radius: 10px;
+            background-color: #aa0909;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="div1">
+        <h1 id="h1">Credo SystemZ - STOP WATCH</h1>
+        <div id="div2">
+            <h1 id="hour" class="timer">00</h1>
+            <h1 id="minute" class="timer">00</h1>
+            <h1 id="second" class="timer">00</h1>
+        </div>
+        <button class="Sbuttons" onclick="startStopwatch()">Start</button>
+        <button class="STbuttons" onclick="stopStopwatch()">Stop</button>
+        <button class="REbuttons" onclick="resetStopwatch()">Reset</button>
+    </div>
+
+    <script>
+        let timer;
+        let seconds = 0, minutes = 0, hours = 0;
+
+        function startStopwatch() {
+            timer = setInterval(updateStopwatch, 1000);
+        }
+
+        function stopStopwatch() {
+            clearInterval(timer);
+        }
+
+        function resetStopwatch() {
+            clearInterval(timer);
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updateDisplay();
+        }
+
+        function updateStopwatch() {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const Hour = document.getElementById("hour");
+            Hour.textContent = formatTime(hours);
+            const Minute = document.getElementById("minute");
+            Minute.textContent = formatTime(minutes);
+            const Second = document.getElementById("second");
+            Second.textContent = formatTime(seconds);
+        }
+
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+    </script>
+
+</body>
+
+</html>
